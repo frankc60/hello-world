@@ -23,3 +23,6 @@
 
 9. access from cmdline:
     curl http://localhost:8080
+
+10. put into Kubernetes--
+
