@@ -24,5 +24,9 @@
 9. access from cmdline:
     curl http://localhost:8080
 
-10. put into Kubernetes--
+--Put into Kubernetes--
+1. create a pod.yaml file
+
+2. create a service.yaml file
+
 
