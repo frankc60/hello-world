@@ -2,7 +2,6 @@
   "name": "nodeapp",
   "version": "1.0.0",
   "description": "Basic webserver",
-  "keywords": ["nodejs","expressjs","docker"],
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
