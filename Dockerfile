@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm install
 # installing all the depend--platform=linux/arm64 encies
 
-COPY . ./
+COPY . .
 # copying all the JS files inside our project
 
 EXPOSE 3000

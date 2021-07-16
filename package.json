@@ -1,6 +1,6 @@
 {
   "name": "nodeapp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Basic webserver",
   "author": "frankc60",
   "main": "app.js",

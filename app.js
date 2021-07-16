@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require("express");
 
 const app = express();
@@ -9,10 +7,9 @@ const HOST = "0.0.0.0";
 
 app.get('/', (req, res) => {
   res.send(`Hello World! ${HOST}:${PORT}.
-  the end.X
-  `)
+  the end.X `);
 })
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Running on http://${HOST}:${PORT}`)
 })
