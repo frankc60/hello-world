@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:10
 # we specify the image name that we need to our project
 
 WORKDIR /usr/src/app
