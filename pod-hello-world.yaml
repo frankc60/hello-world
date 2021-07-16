@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello-world-docker2
+  name: hello-world-pod
   labels:
-    name: hello-world-docker2
+    name: hello-world-pod
     app: hello-world-app
 spec:
   containers:
-    -  name: hello-world
+    -  name: hello-world-pod
        image: frankc60/hello-world    
        imagePullPolicy: Always
+       terminationMessagePath: "/tmp/my-log"

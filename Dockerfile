@@ -1,4 +1,4 @@
-FROM node:10
+FROM --platform=linux/arm64 node:10
 # we specify the image name that we need to our project
 
 WORKDIR /usr/src/app
@@ -8,9 +8,8 @@ COPY package*.json ./
 # copying both package.json & package-lock.json
 
 RUN npm install
-# installing all the dependencies
-
-COPY . ./
+# installing all the depend--platform=linux/arm64 encies
+OPY . ./
 # copying all the JS files inside our project
 
 EXPOSE 3000
