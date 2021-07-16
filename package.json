@@ -2,18 +2,17 @@
   "name": "nodeapp",
   "version": "1.0.0",
   "description": "Basic webserver",
+  "author": "frankc60",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/frankc60/hello-world"
   },
-  "author": "frankc60",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "ip": "^1.1.5"
+    "express": "4.17.1"
   }
 }

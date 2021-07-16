@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 arm64v8/node:12-slim
+FROM node:14
 # we specify the image name that we need to our project
 
 WORKDIR /usr/src/app

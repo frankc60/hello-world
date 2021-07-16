@@ -1,18 +1,18 @@
-const ip = require("ip");
+'use strict';
+
 const express = require("express");
 
 const app = express();
 
-const port = 3000;
-
-const ipAddress = ip.address();
+const PORT = 3000;
+const HOST = "0.0.0.0";
 
 app.get('/', (req, res) => {
-  res.send(`Hello World! ${ipAddress}:${port}.
-  the end.
+  res.send(`Hello World! ${HOST}:${PORT}.
+  the end.X
   `)
 })
 
 app.listen(port, () => {
-  console.log(`App listening on http://${ipAddress}:${port}`)
+  console.log(`Running on http://${HOST}:${PORT}`)
 })
