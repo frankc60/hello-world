@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+env:
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  VERSION_ID: V5
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set env variable
+      run: echo "NOW=$(date +%s)" >> $GITHUB_ENV
+
+    - name: Echo current date
+      run: echo $NOW
+    
+    - name: docker login
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    
+    - name: Build the Docker image
+      run: docker build . -t $DOCKER_USER/hello-world:$NOW
+
+    - name: Docker Publish
+      run: docker push $DOCKER_USER/hello-world:$NOW
