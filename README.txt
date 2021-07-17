@@ -1,3 +1,4 @@
+* CREATE NODE APP, DOCKERIZE TO TEST. THEN CREATE A KUBE POD WITH APP. *
 1. create this nodejs app
 2. create a "dockerfile", insert contents.
 3. put in a .dockerignore file, with: node_modules
@@ -29,4 +30,11 @@
 
 2. create a service.yaml file
 
+> kubectl create -f pod.yaml
+> kubectl get pods
+
+> kubectl create -f service.yaml
+> kubectl get svc 
+
+-----------------------------------------
 
