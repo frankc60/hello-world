@@ -9,7 +9,6 @@
     "git": "git add . && echo 'do a git publish after comment.' && git commit -m",
     "publish": "git push",
     "deploy": "node -e \"const dateTime = require('moment')().format('MM/DD/YYYY HH:mm:ss'); require('child_process').execSync(`git add . && git commit -m \"Release at ${dateTime}\" && git push`, { stdio: [0, 1, 2]} );\""
-
   },
   "repository": {
     "type": "git",
@@ -17,6 +16,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "moment": "2.29.1"
   }
 }
