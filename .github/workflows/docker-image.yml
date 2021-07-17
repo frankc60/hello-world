@@ -20,8 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set current date as env variable
-      run: echo "NOW:$(date +%s)" >> $GITHUB_ENV
+    - name: Set env variable
+      run: echo "NOW=$(date +%s)" >> $GITHUB_ENV
 
     - name: Echo current date
       run: echo $NOW
