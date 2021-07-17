@@ -24,4 +24,4 @@ jobs:
       run: docker build . --file Dockerfile --tag frankc60/hello-world:$(date +%s)
 
     - name: Docker publish
-      run: docker push $(DOCKER_USER)/hello-world
+      run: docker push ${{secrets.DOCKER_USER}}/hello-worlD
