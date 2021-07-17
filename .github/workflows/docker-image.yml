@@ -3,7 +3,7 @@ name: Docker Image CI
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  TIMESTAMP: ${{date}}
+  TIMESTAMP: "1234"
 
 on:
   push:
