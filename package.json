@@ -1,11 +1,13 @@
 {
   "name": "nodeapp",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Basic webserver",
   "author": "frankc60",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "git1": "git add . && git commit -m",
+    "git2": "git push --all"
   },
   "repository": {
     "type": "git",
