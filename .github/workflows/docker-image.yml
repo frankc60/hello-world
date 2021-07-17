@@ -3,7 +3,7 @@ name: Docker Image CI
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  TIMESTAMP: "1234"
+  TIME_STAMP: "1234"
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: docker build . -t $DOCKER_USER/hello-world:${{TIMESTAMP}}
+      run: docker build . -t $DOCKER_USER/hello-world:${{TIME_STAMP}}
 
     - name: Docker Publish
-      run: docker push $DOCKER_USER/hello-world:${{TIMESTAMP}}
+      run: docker push $DOCKER_USER/hello-world:${{TIME_STAMP}}
