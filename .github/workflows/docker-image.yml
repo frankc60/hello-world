@@ -23,7 +23,7 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: docker build . -t ${{ DOCKER_USER }}/hello-world:${{ TIMESTAMP }}
+      run: docker build . -t ${{DOCKER_USER}}/hello-world:${{TIMESTAMP}}
 
     - name: Docker Publish
-      run: docker push ${{ DOCKER_USER }}/hello-world:${{ TIMESTAMP }}
+      run: docker push ${{DOCKER_USER}}/hello-world:${{TIMESTAMP}}
