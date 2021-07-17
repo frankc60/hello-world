@@ -19,11 +19,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set current date as env variable
+      run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+    - name: Echo current date
+      run: echo $NOW
+    
     - name: docker login
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: docker build . -t $DOCKER_USER/hello-world:$VERSION_ID
+      run: docker build . -t $DOCKER_USER/hello-world:$NOW
 
     - name: Docker Publish
-      run: docker push $DOCKER_USER/hello-world:$VERSION_ID
+      run: docker push $DOCKER_USER/hello-world:$NOW
