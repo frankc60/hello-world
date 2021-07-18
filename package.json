@@ -8,8 +8,12 @@
     "start": "node app.js",
     "git": "git add . && echo 'do a git publish after comment.' && git commit -m",
     "publish": "git push",
-    "deploy": "node -e \"const dateTime = require('moment')().format('YYYYMMDD')\" && `git add .` && git commit -m \"v${{dateTime}}\"" 
-  },
+    "deploy": "node -e \"const dateTime = require('moment')().format('YYYYMMDD'); const execSync = require('child_process').execSync(\"echo ${{dateTime}}\");",
+  "xxx": "node -e 'console.log(process.env)' | grep npm"
+  
+  
+    },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/frankc60/hello-world"
