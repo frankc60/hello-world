@@ -8,7 +8,7 @@
     "start": "node app.js",
     "git": "git add . && echo 'do a git publish after comment.' && git commit -m",
     "publish": "git push",
-    "deploy": "node -e \"const dateTime = require('moment')().format('MM/DD/YYYY HH:mm:ss'); require('child_process').execSync(`echo ${dateTime} && git add . && git commit -m \"Release at ${dateTime}\"`)\""
+    "deploy": "node -e \"const dateTime = require('moment')().format('YYYYMMDD')\" && git add . && git commit -m \"v${dateTime}\"" 
   },
   "repository": {
     "type": "git",
