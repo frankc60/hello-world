@@ -16,7 +16,7 @@
     "go2": "NODE_XX = node -e \"()=> { const dateTime = require('moment')().format('YYYYMMDD');console.log(dateTime); return dateTime}\" && echo $NODE_XX",
     "go3": "node -e \"require('child_process').execSync('git add .');\"",
     "go4": "node -e \"const x=12345;require('child_process').execSync('git commit --m -- \"$x\"');\"",
-    "minor-release": "npm version minor && npm publish && git push --follow-tags"
+    "minor-release": "npm version minor && git push --follow-tags"
   },
   "repository": {
     "type": "git",
