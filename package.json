@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "go1": "npm version minor",
+    "go2": "npm version minor",
     "go5": "node -e \"const mssg = 'hello world'; const dateTime = require('moment')().format('YYYYMMDD_HHMMSS'); require('child_process').execSync('git add . && git commit -m \\\"update_' + dateTime + '\\\" && git push && npm version minor', { stdio:[0, 1, 2] })\""
   },
   "repository": {
