@@ -6,18 +6,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "git": "git add . && echo 'do a git publish after comment.' && git commit -m $npm_config_m",
-    "publish": "git push",
-    "date": "node -e \"const dateTime = require('moment')().format('YYYYMMDD');console.log(dateTime)\"",
-    "xxx": "node -e 'console.log(process.env)' | grep version",
-    "aaa": "node -e \"const execSync = require('child_process').execSync;let code = execSync('git status');execSync('git push');console.log(code);\" && npm run date && npm run xxx && npm run out --foo=frank",
-    "out": "node -e \"console.log('$npm_config_foo')\"",
-    "go": "npm run out --foo=frank",
-    "go2": "NODE_XX = node -e \"()=> { const dateTime = require('moment')().format('YYYYMMDD');console.log(dateTime); return dateTime}\" && echo $NODE_XX",
-    "go3": "node -e \"require('child_process').execSync('git add .');\"",
-    "go4": "node -e \"const x=12345;require('child_process').execSync('git commit --m -- \"$x\"');\"",
-    "minor-release2": "npm version minor && git add . && git commit --m 'auto updates' && git push --follow-tags",
-    "minor-release1": "npm version minor && git add .",
     "go5": "node -e \"const mssg = 'hello world'; const dateTime = require('moment')().format('YYYYMMDD_HHMMSS'); require('child_process').execSync('git add . && git commit -m \\\"update_' + dateTime + '\\\" && git push', { stdio:[0, 1, 2] })\""
 
   },
