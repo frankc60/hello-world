@@ -18,7 +18,7 @@
     "go4": "node -e \"const x=12345;require('child_process').execSync('git commit --m -- \"$x\"');\"",
     "minor-release2": "npm version minor && git add . && git commit --m 'auto updates' && git push --follow-tags",
     "minor-release1": "npm version minor && git add .",
-    "go5": "node -e \"const mssg = 'hello world'; require('child_process').execSync('git add . && git commit -m \\\"' + mssg + '\\\"', { stdio:[0, 1, 2] })\""
+    "go5": "node -e \"const mssg = 'hello world'; require('child_process').execSync('git add . && git commit -m \\\"' + mssg + '\\\" && git push', { stdio:[0, 1, 2] })\""
 
   },
   "repository": {
