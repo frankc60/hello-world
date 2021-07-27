@@ -30,9 +30,9 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: docker build -t $DOCKER_USER/hello-world:manifest-arm64v8 --build-arg ARCH=arm64v8/ .
+      run: docker build -t $DOCKER_USER/hello-world:manifest-arm64 --build-arg ARCH=arm64/ .
       
     - name: Push to Docker Hub
-      run: docker push $DOCKER_USER/hello-world:manifest-arm64v8
+      run: docker push $DOCKER_USER/hello-world:manifest-arm64
 
 
