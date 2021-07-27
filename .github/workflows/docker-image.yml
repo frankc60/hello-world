@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Set env variable
-      run: echo "NOW=$(date +%s)" >> $GITHUB_ENV
+      run: echo "NOW=V$(date +%s)" >> $GITHUB_ENV
 
     - name: Echo current date
       run: echo $NOW
@@ -30,7 +30,4 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build the Docker image
-      run: docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 . -t $DOCKER_USER/hello-world:$NOW --push
-
-    - name: Docker Publish
-      run: docker push $DOCKER_USER/hello-world:$NOW
+      run: docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $DOCKER_USER/hello-world:$NOW --push .
