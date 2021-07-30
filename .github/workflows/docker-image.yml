@@ -1,7 +1,7 @@
 name: Docker Image CI
 
 env:
-  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   VERSION_ID: V5
   DOCKER_TARGET_PLATFORM: linux/arm64
