@@ -38,17 +38,14 @@ jobs:
         echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
         echo ::set-output name=version::${GITHUB_RUN_NUMBER}    
 
-    
-    - name: Set env variable
-      run: echo "NOW=V$(date +%s)" >> $GITHUB_ENV
+        
+    - name: Docker Login      
+      if: success()      
+      run: |        
+        echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} --username "${DOCKER_USERNAME}" --password-stdin
 
-    - name: Echo current date
-      run: echo $NOW
-    
-    
-    
-    - name: docker login
-      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+
 
 
     - name: Run Buildx (push image)      
