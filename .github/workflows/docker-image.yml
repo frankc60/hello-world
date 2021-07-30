@@ -48,15 +48,12 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 
-    - name: Build the Docker image
-      run: docker build -t $DOCKER_USER/hello-world:manifest-arm64 --build-arg ARCH=arm64/ .
-
     - name: Run Buildx (push image)      
       if: success()      
       run: |        
         docker buildx build \
         --platform ${{ steps.prepare.outputs.docker_platform }} \
-        --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+        --tag '${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}' \
         --file ./Dockerfile \
         --output type=image,push=true .
 
