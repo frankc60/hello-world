@@ -4,6 +4,7 @@ env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   VERSION_ID: V5
+  DOCKER_TARGET_PLATFORM: linux/arm64
 
 on:
   push:
@@ -16,22 +17,52 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set up Docker Buildx      
+      uses: crazy-max/ghaction-docker-buildx@v1      
+      with:        
+        version: latest
+
+    
+    - name: Prepare      
+      if: success()      
+      id: prepare      
+      run: |        
+        echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
+        echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
+        echo ::set-output name=version::${GITHUB_RUN_NUMBER}    
+
+    
     - name: Set env variable
       run: echo "NOW=V$(date +%s)" >> $GITHUB_ENV
 
     - name: Echo current date
       run: echo $NOW
     
+    
+    
     - name: docker login
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    
+
+
     - name: Build the Docker image
       run: docker build -t $DOCKER_USER/hello-world:manifest-arm64 --build-arg ARCH=arm64/ .
-      
+
+- name: Run Buildx (push image)      
+      if: success()      
+      run: |        
+        docker buildx build \
+        --platform ${{ steps.prepare.outputs.docker_platform }} \
+        --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \
+        --file ./Dockerfile \
+        --output type=image,push=true .
+
+
+
+
     - name: Push to Docker Hub
       run: docker push $DOCKER_USER/hello-world:manifest-arm64
 
