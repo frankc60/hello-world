@@ -5,5 +5,5 @@ metadata:
 spec:
   containers:
   -  name: hello-world-pod
-     image: frankc60/hello-world:v2
+     image: frankc60/hello-world:1627285718
      imagePullPolicy: Always

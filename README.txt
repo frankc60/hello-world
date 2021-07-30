@@ -16,8 +16,8 @@
         -p 8080:3000  - to open port 8080 to network, via http://localhost:8080)
 
 7. check app is running in background:
-    sudo docker ps
-    sudo docker logs containerID
+    sudo docker ps (to get the containerID)
+    sudo docker logs <containerID>
     
 8. if you need to go into container:
     sudo docker exec -it <containerID> /bin/bash
