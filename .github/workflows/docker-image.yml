@@ -51,7 +51,7 @@ jobs:
     - name: Build the Docker image
       run: docker build -t $DOCKER_USER/hello-world:manifest-arm64 --build-arg ARCH=arm64/ .
 
-- name: Run Buildx (push image)      
+    - name: Run Buildx (push image)      
       if: success()      
       run: |        
         docker buildx build \
