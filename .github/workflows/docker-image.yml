@@ -5,6 +5,9 @@ env:
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   VERSION_ID: V5
   DOCKER_TARGET_PLATFORM: linux/arm64
+  DOCKER_REGISTRY: frankc60
+  DOCKER_IMAGE: hello-world
+
 
 on:
   push:
