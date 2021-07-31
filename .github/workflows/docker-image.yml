@@ -30,7 +30,7 @@ jobs:
         jestArgs: tests/maths.test.js
 
     - name: install NodeJS
-    - uses: actions/setup-node@v2
+      uses: actions/setup-node@v2
       with:
         node-version: '14'
     
