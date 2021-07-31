@@ -31,8 +31,8 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Set NPM folder permissions
-        run: sudo chown -R $(whoami) ~/.npm
+      #- name: Set NPM folder permissions
+      #  run: sudo chown -R $(whoami) ~/.npm
 
       - name: Install dependencies
         run: npm install
