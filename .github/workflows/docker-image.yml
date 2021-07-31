@@ -8,68 +8,61 @@ env:
   DOCKER_REGISTRY: frankc60
   DOCKER_IMAGE: hello-world
 
-
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 #  pull_request:
 #    branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
-      with:
-        jestArgs: tests/maths.test.js
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.3
+        with:
+          jestArgs: tests/maths.test.js
 
-    - name: install NodeJS
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    
-    - name: Install dependencies
-      run: sudo npm install
+      - name: install NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-    - name: Run the tests
-      run: npm test -- --coverage
+      - name: Set NPM folder permissions
+        run: sudo chown -R $(whoami) ~/.npm
 
+      - name: Install dependencies
+        run: npm install
 
+      - name: Run the test with Coverage
+        run: npm test -- --coverage
 
-    - name: Set up Docker Buildx      
-      uses: crazy-max/ghaction-docker-buildx@v1      
-      with:        
-        version: latest
-    
-    - name: Prepare      
-      if: success()      
-      id: prepare      
-      run: |        
-        echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
-        echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
-        echo ::set-output name=version::${GITHUB_RUN_NUMBER}    
+      - name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
 
-        
-    - name: Docker Login      
-      if: success()      
-      run: |        
-        echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin
- 
-    - name: Run Buildx (push image)      
-      if: success()      
-      run: |        
-        docker buildx build \
-        --platform ${{ steps.prepare.outputs.docker_platform }} \
-        --tag '${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}' \
-        --file ./Dockerfile \
-        --output type=image,push=true .
+      - name: Prepare
+        if: success()
+        id: prepare
+        run: |
+          echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
+          echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
+          echo ::set-output name=version::${GITHUB_RUN_NUMBER}
 
+      - name: Docker Login
+        if: success()
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin
 
-
-
+      - name: Run Buildx (push image)
+        if: success()
+        run: |
+          docker buildx build \
+          --platform ${{ steps.prepare.outputs.docker_platform }} \
+          --tag '${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}' \
+          --file ./Dockerfile \
+          --output type=image,push=true .
