@@ -17,5 +17,8 @@
   "dependencies": {
     "express": "4.17.1",
     "moment": "2.29.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }
