@@ -8,7 +8,9 @@ jobs:
       - name: Test using NodeJS
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "12.x"
       - name: NPM install dependencies
-        run: npm install
+        run: npm ci
+      - name: NPM test
+        run: npm test
         # working-directory: /home/runner/work/hello-world
