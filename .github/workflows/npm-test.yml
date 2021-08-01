@@ -1,13 +1,14 @@
 name: npm-test
 on: [push]
 jobs:
-  check-bats-version:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Test using NodeJS
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
       - name: NPM install dependencies
         run: npm install
-        working-directory: /home/runner/work/hello-world
+       # working-directory: /home/runner/work/hello-world
