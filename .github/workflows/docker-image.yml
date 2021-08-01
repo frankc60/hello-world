@@ -34,8 +34,9 @@ jobs:
       #- name: Set NPM folder permissions
       #  run: sudo chown -R $(whoami) ~/.npm
 
-      - name: Install dependencies
+      - name: npm install dependencies
         run: npm install
+        working-directory: /home/runner/work/hello-world
 
       - name: Run the test with Coverage
         run: npm test -- --coverage
