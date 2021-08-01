@@ -11,6 +11,10 @@ jobs:
           node-version: "12.x"
       - name: NPM install dependencies
         run: npm ci
-      - name: NPM test with Coverage
-        run: npm test -- -- coverage
-        # working-directory: /home/runner/work/hello-world
+
+      - name: NPM test
+        run: npm test
+
+      - name: Run the test with Coverage
+        run: npm test -- --coverage
+        working-directory: /home/runner/work/hello-world
