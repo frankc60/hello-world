@@ -17,4 +17,4 @@ jobs:
 
       - name: Run the test with Coverage
         run: npm test -- --coverage
-        working-directory: /home/runner/work/hello-world
+        working-directory: /home/runner/work/hello-world/hello-world
