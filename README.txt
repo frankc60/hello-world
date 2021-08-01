@@ -36,5 +36,14 @@
 > kubectl create -f service.yaml
 > kubectl get svc 
 
+3. Delete the POD:
+> kubectl delete pod hello-world
+
+4. update deployment.yaml, and create that instead of the pod.yaml.
+
+*To update the docker tag version. make change n the pod.yaml or deployment.yaml file.
+
+
+
 -----------------------------------------
 
