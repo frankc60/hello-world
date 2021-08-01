@@ -1,9 +1,8 @@
-name: Docker Image CI
+name: Docker Build Image
 
 env:
   DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  VERSION_ID: V5
   DOCKER_TARGET_PLATFORM: linux/arm64
   DOCKER_REGISTRY: frankc60
   DOCKER_IMAGE: hello-world
@@ -21,10 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.3
-        with:
-          jestArgs: tests/maths.test.js
+      #      - name: Run Jest
+      #        uses: stefanoeb/jest-action@1.0.3
+      #        with:
+      #          jestArgs: tests/maths.test.js
 
       - name: install NodeJS
         uses: actions/setup-node@v2
@@ -34,12 +33,11 @@ jobs:
       #- name: Set NPM folder permissions
       #  run: sudo chown -R $(whoami) ~/.npm
 
-      - name: npm install dependencies
-        run: npm install
-        working-directory: /home/runner/work/hello-world
+      # - name: Install dependencies
+      #   run: npm install
 
-      - name: Run the test with Coverage
-        run: npm test -- --coverage
+      #- name: Run the test with Coverage
+      #  run: npm test -- --coverage
 
       - name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v1
