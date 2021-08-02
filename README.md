@@ -1,4 +1,7 @@
-* CREATE NODE APP, DOCKERIZE TO TEST. THEN CREATE A KUBE POD WITH APP. *
+# CREATE NODE APP, DOCKERIZE TO TEST. THEN CREATE A KUBE POD WITH APP.
+
+![main workflow](https://github.com/frankc60/hello-world/actions/workflows/main.workflow.yml/badge.svg)
+
 1. create this nodejs app
 2. create a "dockerfile", insert contents.
 3. put in a .dockerignore file, with: node_modules
@@ -18,32 +21,27 @@
 7. check app is running in background:
     sudo docker ps (to get the containerID)
     sudo docker logs <containerID>
-    
 8. if you need to go into container:
     sudo docker exec -it <containerID> /bin/bash
-
 9. access from cmdline:
     curl http://localhost:8080
 
 --Put into Kubernetes--
-1. create a pod.yaml file
+1.create a pod.yaml file
 
-2. create a service.yaml file
+2.create a service.yaml file
 
 > kubectl create -f pod.yaml
 > kubectl get pods
-
 > kubectl create -f service.yaml
-> kubectl get svc 
+> kubectl get svc
 
-3. Delete the POD:
+3.Delete the POD:
+
 > kubectl delete pod hello-world
 
-4. update deployment.yaml, and create that instead of the pod.yaml.
+4.update deployment.yaml, and create that instead of the pod.yaml.
 
 *To update the docker tag version. make change n the pod.yaml or deployment.yaml file.
 
-
-
 -----------------------------------------
-
