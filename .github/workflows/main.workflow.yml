@@ -12,17 +12,54 @@ on:
     branches: [master]
 
 jobs:
-  setup:
+  CI:
     runs-on: ubuntu-latest
     steps:
-      - run: ./setup_server.sh
-  build:
-    needs: setup
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12.x"
+
+      - name: npm install dependencies
+        run: npm ci
+
+      - name: npm build if present
+        run: npm run build --if-present
+
+      - name: Run the test with Coverage
+        run: npm test -- --coverage
+        working-directory: /home/runner/work/hello-world/hello-world
+
+  build2:
+    needs: CI
     runs-on: ubuntu-latest
     steps:
-      - run: ./build_server.sh
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: ./test_server.sh
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+
+      - name: Prepare
+        if: success()
+        id: prepare
+        run: |
+          echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
+          echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
+          echo ::set-output name=version::${GITHUB_RUN_NUMBER}
+
+      - name: Docker Login
+        if: success()
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin
+
+      - name: Run Buildx (push image)
+        if: success()
+        run: |
+          docker buildx build \
+          --platform ${{ steps.prepare.outputs.docker_platform }} \
+          --tag '${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}' \
+          --file ./Dockerfile \
+          --output type=image,push=true .
