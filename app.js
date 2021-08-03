@@ -1,3 +1,4 @@
+const moment = require("moment");
 const express = require("express");
 
 const app = express();
@@ -7,9 +8,13 @@ const HOST = "0.0.0.0";
 
 app.get('/', (req, res) => {
 
+ let nowt = moment().format('MMMM Do YYYY, h:mm:ss a');
+
+
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   res.send(`Hello World! ${HOST}:${PORT}.
-  the end. changed Monday 2nd August. ${fullUrl}`);
+  the end. changed Monday 2nd August. ${fullUrl}
+  ${nowt}`);
 })
 
 app.listen(PORT, () => {
