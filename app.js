@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   res.send(`Hello World! ${HOST}:${PORT}.
   the end. changed Sat 7 Aug. now is: ${fullUrl}
+  the end. changed Friday 6 Aug. now isdddd: ${fullUrl}
   ${nowt}`);
 })
 
