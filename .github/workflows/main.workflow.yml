@@ -49,7 +49,7 @@ jobs:
           echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
           echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
           echo ::set-output name=version::${GITHUB_RUN_NUMBER}
-          echo ::set-output name=file_path::${github.action_path}
+          echo ::set-output name=file_path::${GITHUB_WORKSPACE}
 
       - name: Docker Login
         if: success()
