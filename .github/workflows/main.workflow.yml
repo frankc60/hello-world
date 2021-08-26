@@ -49,6 +49,7 @@ jobs:
           echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
           echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
           echo ::set-output name=version::${GITHUB_RUN_NUMBER}
+          echo ::set-output name=file_path::${GITHUB_WORKSPACE}
 
       - name: Docker Login
         if: success()
@@ -66,7 +67,7 @@ jobs:
       - name: write build number to file
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: "${{ GITHUB_EVENT_PATH }}/buildnumber.txt"
+          path: '${{ steps.prepare.outputs.file_path }}\\buildnumber.txt'
           contents: |
             echo "Build number: ${ GITHUB_RUN_NUMBER }"
             write-mode: append
