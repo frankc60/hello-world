@@ -65,9 +65,8 @@ jobs:
           --output type=image,push=true .
       - name: write build number to file
         uses: DamianReeves/write-file-action@v1.0
-        if: success()
         with:
-          path: ${{ GITHUB_WORKSPACE }}/buildnumber.txt
+          path: "${{ GITHUB_WORKSPACE }}/buildnumber.txt"
           contents: |
-            echo "Build number: ${GITHUB_RUN_NUMBER}"
+            echo "Build number: ${ GITHUB_RUN_NUMBER }"
             write-mode: append
