@@ -66,7 +66,7 @@ jobs:
       - name: write build number to file
         uses: DamianReeves/write-file-action@v1.0
         with:
-          path: "${{ GITHUB_WORKSPACE }}/buildnumber.txt"
+          path: "${{ GITHUB_EVENT_PATH }}/buildnumber.txt"
           contents: |
             echo "Build number: ${ GITHUB_RUN_NUMBER }"
             write-mode: append
