@@ -67,7 +67,7 @@ jobs:
         uses: DamianReeves/write-file-action@v1.0
         if: success()
         with:
-          path: ${{ env.home }}/buildnumber.txt
+          path: ${{ GITHUB_WORKSPACE }}/buildnumber.txt
           contents: |
             echo "Build number: ${GITHUB_RUN_NUMBER}"
             write-mode: append
